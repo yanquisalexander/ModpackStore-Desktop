@@ -1,32 +1,55 @@
 <template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+  <div>
+  <v-app style="background-color: #181818 ;">
+        <TitleBar/>
+
+    <v-app-bar
+      app
+      color="#181818"
+      dark
+      flat
+      v-if="!this.$route.currentRoute == '/login'"
+    >
+      <div class="d-flex align-center">
+       
+      </div>
+
+      <v-spacer></v-spacer>
+
+    </v-app-bar>
+
+    <v-main>
+      <router-view/>
+    </v-main>
+  </v-app>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import TitleBar from './components/TitleBar'
 
-#nav {
-  padding: 30px;
+export default {
+  name: 'App',
+  components: {
+    TitleBar
+  },
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+  data: () => ({
+    //
+  }),
+};
+</script>
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<style type="text/css">
+@import "~@fontsource/jost/variable.css"; 
+
+  html {
+    overflow-y: auto;
   }
-}
+
+  body {
+    overflow-y: auto;
+  }
+
+
 </style>
