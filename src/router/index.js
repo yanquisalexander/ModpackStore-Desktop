@@ -2,6 +2,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/auth/Login'
+const auth = require("@/main")
+
 
 
 
@@ -13,7 +15,7 @@ const routes = [
     name: 'Home',
     component: Home,
     meta: {
-      requiresAuth: true
+      authRequired: true
     }
   },
   {
@@ -37,14 +39,21 @@ const router = new VueRouter({
   routes
 })
 
-router.beforeEach((to, from, next) => {
-  // get current user info
-  const currentUser = window.supabase.auth.user();
-  const requiresAuth = to.matched.some(record => record.meta.requiresAuth);
 
-  if(requiresAuth && !currentUser) next('login');
-  else if(!requiresAuth && currentUser) next("/");
-  else next();
-})
+
+router.beforeEach((to, from, next) => {
+  if (to.matched.some(record => record.meta.authRequired)) {
+    if (auth.currentUser) {
+      next();
+    } else {
+      console.log('You must be logged in to see this page');
+      next({
+        path: '/login',
+      });
+    }
+  } else {
+    next();
+  }
+});
 
 export default router

@@ -63,6 +63,9 @@
     flex-shrink: 0;
     background-color: #000;
     display: flex;
+    top: 0;
+    position: fixed;
+    width: -webkit-fill-available;
 }
 
 .reverse {
