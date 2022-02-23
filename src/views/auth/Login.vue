@@ -11,7 +11,7 @@
 <v-img src="https://store-images.s-microsoft.com/image/apps.2678.14513124030084310.ec67955a-94fe-46fe-943b-1c6afb546be2.4e30ef5c-a49b-4b04-867c-a953936bf086"></v-img>
   <h1 class="login-title pt-6 pb-2">Modpack Store</h1>
     <p class="login-subtitle pb-4">Inicia sesión para acceder a Modpack Store</p>
-
+<v-form @keyup.native.enter="login">
     <v-text-field
             filled
             dark
@@ -40,6 +40,7 @@
   class="mt-2 mb-4"
   width="80%"
 >Acceder</v-btn>
+</v-form>
 </v-card>
       </v-col>
   </v-row>
@@ -63,12 +64,20 @@
       </template>
     </v-snackbar>
 
+    <v-overlay :value="overlay" opacity="0.9">
+      <v-progress-circular
+        indeterminate
+        size="64"
+      ></v-progress-circular>
+    </v-overlay>
+
 
    </div>
 </template>
 
 <script type="text/javascript">
-import auth from "@/main"
+const auth = require("@/modules/Firebase").default.auth
+window.auth = auth
 import firebaseMessage from "@/assets/firebasei18n.json";
   
   export default {
@@ -78,20 +87,25 @@ import firebaseMessage from "@/assets/firebasei18n.json";
     email: '', 
     password: '', 
     snackbar: false,
-      text: 'My timeout is set to 2000.',
-      timeout: 2000,
+      text: '',
+      timeout: 6000,
+      overlay: false,
   }; 
 },
     methods: {
   login() {
-      auth().signInWithEmailAndPassword(this.email, this.password)
+    this.overlay = true;
+      auth.signInWithEmailAndPassword(this.email, this.password)
       .then(() => {
+        this.overlay = false;
         alert('Successfully logged in');
         this.$router.push('/dashboard');
       })
       .catch(e => {
         const errorText = firebaseMessage[e.code] || e.message;
-        alert(errorText);
+        this.text = errorText;
+        this.snackbar = true
+        this.overlay = false
       });
   },
 },
