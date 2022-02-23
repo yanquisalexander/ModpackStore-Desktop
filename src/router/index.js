@@ -2,7 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Login from '../views/auth/Login'
-const auth = require("@/main")
+const auth = require("@/modules/Firebase").default.auth
 
 
 
