@@ -111,5 +111,12 @@ export default {
     font-family: Jost;
   }
 
+.mt-18 {
+margin-top: 84px !important;
+}
+
+* {
+  user-select: none;
+}
 
 </style>
