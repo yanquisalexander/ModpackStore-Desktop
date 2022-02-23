@@ -33,11 +33,16 @@ prepend-inner-icon="mdi-magnify"
           mdi-folder-download-outline
         </v-icon>Modpacks Instalados
     </v-btn>
+
+    <v-menu offset-y transition="slide-y-transition">
+       <template v-slot:activator="{ on, attrs }">
     <v-btn
       rounded
       color="#303030"
       dark
       class="userBtn t-i"
+       v-bind="attrs"
+          v-on="on"
     >
     <v-icon
           dark
@@ -53,6 +58,47 @@ prepend-inner-icon="mdi-magnify"
         src="https://yanquisalexander.me/_nuxt/img/alexander.9b54f94.jpg"
       ></v-avatar>
     </v-btn>
+    </template>
+    <v-list dark dense flat width="300" class="mt-2">
+      <v-list-item-group
+      >
+
+              <v-list-item
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-treasure-chest</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Abrir MultiMinecraft</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        
+        <v-list-item
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-open-in-new</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Ir a Modpack Creators</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+        <v-list-item
+        >
+          <v-list-item-icon>
+            <v-icon>mdi-cog-outline</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-list-item-title>Configuración</v-list-item-title>
+          </v-list-item-content>
+        </v-list-item>
+
+
+
+      </v-list-item-group>
+    </v-list>
+    </v-menu>
   </div>
 
     </v-app-bar>
