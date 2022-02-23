@@ -1,5 +1,6 @@
 <template>
-  <div></div>
+  <div class="mt-7">
+  </div>
 </template>
 
 <script>
