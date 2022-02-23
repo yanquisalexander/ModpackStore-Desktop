@@ -13,16 +13,26 @@
       <div class="d-flex align-center">
 
       </div>
-<v-text-field
-prepend-inner-icon="mdi-magnify"
-            label="Buscar en Modpack Store"
+      <v-autocomplete
+        item="items"
+        hide-selected
             class="mt-7 searchText"
             filled
             rounded
             dark
             dense
             single-line
-          ></v-text-field>
+        label="Buscar en Modpack Store"
+prepend-inner-icon="mdi-magnify"
+        return-object
+      ><template v-slot:no-data>
+<v-list-item light>
+          <v-list-item-title>
+            Escribe para buscar en Modpack Store
+          </v-list-item-title>
+        </v-list-item></template></v-autocomplete>
+
+
       <v-spacer></v-spacer>
       <div class="text-center">
         <v-btn text dark rounded class="t-i myModpacks mr-3">
